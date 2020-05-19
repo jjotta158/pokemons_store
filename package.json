@@ -1,0 +1,28 @@
+{
+  "name": "pokemons_store",
+  "version": "1.0.0",
+  "description": "Esse é o repositório do teset da b2w",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjotta158/pokemons_store.git"
+  },
+  "keywords": [
+    "pokemon",
+    "stor"
+  ],
+  "author": "Jairo Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjotta158/pokemons_store/issues"
+  },
+  "homepage": "https://github.com/jjotta158/pokemons_store#readme",
+  "dependencies": {
+    "json5": "^2.1.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
