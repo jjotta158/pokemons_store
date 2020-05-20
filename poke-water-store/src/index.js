@@ -6,13 +6,25 @@ import functions from './config/requisitions'
 import * as serviceWorker from './serviceWorker';
 async function init() {
   let pokemon = await functions.getAllPokemon();
-  console.log(await functions.getAllPokemon())
-  return ReactDOM.render(
-    <React.StrictMode>
-      <App pokemon={pokemon} />
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
+  console.log(pokemon)
+  let timeout = setTimeout(() => {
+    if(pokemon !== true) {
+      localStorage.setItem('pokemons', JSON.stringify(pokemon))
+    } else {
+      pokemon = JSON.parse(localStorage.getItem('pokemons'))
+    }
+    return ReactDOM.render(
+      <React.StrictMode>
+        <App pokemons={pokemon} />
+      </React.StrictMode>,
+      document.getElementById('root')
+    );
+  }, 1000)
+
+if(pokemon.length > 0) {
+  clearTimeout(timeout)
+}
+  
 }
 init()
 

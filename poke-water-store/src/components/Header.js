@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import SearchBar from './SearchBar'
+import React from 'react';
 
 const Header = () => {
     return (
         <header style={styles.header}>
             <div style={styles.div}>
                 <div className="logo" style={{width:'100%', display:'flex', justifyContent:'center'}}>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/640px-International_Pok%C3%A9mon_logo.svg.png" style={styles.logo}/>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/640px-International_Pok%C3%A9mon_logo.svg.png" style={styles.logo} alt='Pokemon Logo'/>
+                </div>
+                <div >
                 </div>                
             </div>
             
@@ -17,7 +18,7 @@ const styles = {
     header:{
         width:'100%',
         height:'10vmin',
-        backgroundColor:'#CC281D',
+        backgroundColor:'#3F464D',
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-around',

@@ -2,30 +2,25 @@ const axios = require('axios');
 var pokemonss;
 
 const getAllPokemon = async () => {
-    if (checkCache()) {
-        return JSON.parse(localStorage.getItem('pokemons'))
-    }
-    let newPokemonsData = new Array();
-    let pokemons = await axios.get("https://pokeapi.co/api/v2/type/fire/")
+    let newPokemonsData = [];
+    let pokemons = await axios.get("https://pokeapi.co/api/v2/type/water/")
                        .then(pokemon =>pokemon.data.pokemon).catch(error => error)
     
-    pokemons.map(async (pokemon, index) => {
+    await pokemons.map(async (pokemon, index) => {
         newPokemonsData[index] = await completePokemonData(pokemon.pokemon, index)
-    })
-
+    })   
     
-        
-    setTimeout(() => {
-        savePokemons(newPokemonsData)
-    }, 1000)
-
-    return newPokemonsData;
-
+    return await savePokemons(newPokemonsData)
 }
 
-const saveLocal = (poke) => functions.pokemons = poke
 
-const savePokemons = pokemonsData=> localStorage.setItem('pokemons', JSON.stringify(pokemonsData));
+
+const savePokemons = async pokemonsData=> {
+    if(!checkCache()) {
+        await localStorage.setItem('pokemons', JSON.stringify(pokemonsData))
+    }
+    return pokemonsData;
+};
 
 const checkCache = () => (localStorage.getItem('pokemons') != null) ? true : false;
 
