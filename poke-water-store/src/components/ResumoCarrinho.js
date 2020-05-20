@@ -15,7 +15,7 @@ export default class ResumoCarrinho extends React.Component{
                     return(
                         <div style={styles.li}>
                             <span style={{textIndent:'3vmin', width:'7vmin'}} >{pokemon.name}</span>
-                            <span style={{width:'5vmin'}}>R${pokemon.price}</span>
+                            <span style={{width:'5vmin'}}>R${parseFloat(pokemon.price).toFixed(2)}</span>
                             <span style={{width:'3vmin'}}>{pokemon.qtd}</span>
                         </div>
                     )

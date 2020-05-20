@@ -14,15 +14,17 @@ export default class Menu extends React.Component {
     }
     getTotalCart() {
         let total = 0.0 ;
+        let qtdTotal = 0;
         if ( typeof this.state.cart == 'string') {
             this.setState({cart:[]})
         } else {
             this.state.cart.map(pokemon => {            
-                total = total + parseFloat(pokemon.price)
+                qtdTotal = qtdTotal + parseInt(pokemon.qtd)
+               return total = total + parseFloat(pokemon.price)
             })
         }
         
-        
+        localStorage.setItem('cartQtd', qtdTotal);
         localStorage.setItem('totalCart', total.toFixed(2));
         return total.toFixed(2)
     }
@@ -44,7 +46,7 @@ export default class Menu extends React.Component {
             <div style={styles.menu} id="cart">
                 <div style={styles.header}>
                     <h2>Carrinho</h2>
-                    <button style={{display:'none'}} id="closeCart" onClick={() => {
+                    <button style={{color:'#3F464D', border:'none'}} id="closeCart" onClick={() => {
                         let cartModal = document.getElementById('cartModal')
                         cartModal.style.display = 'none'
                     }}>
@@ -52,13 +54,13 @@ export default class Menu extends React.Component {
                     </button>
                 </div>
                 <ResumoCarrinho cart={this.state.cart}/>
-                <div style={{width:'90%',height:'10vmin', borderBottom:'1px solid #ccc', borderTop:'1px solid #ccc', display:'flex', justifyContent:'space-between', fontWeight:'bolder', color:"#666", fontSize:'18px'}}>
+                <div style={{width:'90%',height:'10vmin', borderBottom:'1px solid #ccc', borderTop:'1px solid #ccc', display:'flex', justifyContent:'space-between', fontWeight:'bolder', color:"#3F464D", fontSize:'18px'}}>
                     <span>Total:</span>
                     <span>R$ {this.getTotalCart()}</span>
                 </div>
                 <br></br>
                 <div style={styles.footer} id="footerCart">
-                    <button style={{width:'94%', height:'5.5vmin', backgroundColor:'#CC281D', border:'none',color:'#eee', fontSize:'16px'}} onClick={() =>  this.finishCart()}>Finalizar</button>
+                    <button style={{width:'94%', height:'5.5vmin', backgroundColor:'#3F464D', border:'none',color:'#eee', fontSize:'16px'}} onClick={() =>  this.finishCart()}>Finalizar</button>
                 </div>
             </div>
         )
@@ -72,6 +74,7 @@ const styles = {
         alignItems:'center',
         flexDirection:'column',        
         backgroundColor:'#eee',
+        boxShadow: '7px 7px 10px 5px rgba(0,0,0,0.2) !important'
     },  
     header:{    
         width:'98%',
@@ -83,7 +86,7 @@ const styles = {
         marginRight:'1vmin',
         justifyContent:'space-between',
         textIndent:'1.5vmin',
-        color:'#666',
+        color:'#3F464D',
     },
     footer:{
         width:'99.9%',
